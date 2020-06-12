@@ -23,6 +23,9 @@ export default class App extends Component {
           title: data.title
         });
       })
+      .catch((error) => {
+        console.error('Error', error);
+      })
   }
 
   componentDidMount() {
@@ -48,11 +51,4 @@ export default class App extends Component {
     );
   }
 }
-
-// function Search() {
-//   let match = useRouteMatch();
-//   return (
-
-//   )
-// }
 

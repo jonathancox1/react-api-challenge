@@ -19,6 +19,9 @@ export default class Search extends Component {
                     title: data.title
                 })
             })
+            .catch((error) => {
+                console.error('Error', error);
+            })
     }
 
     onSubmit = (e) => {

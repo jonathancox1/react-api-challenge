@@ -7,23 +7,6 @@ export default class Home extends Component {
         this.state = {}
     }
 
-    getLatestImage() {
-        fetch('https://xkcd.now.sh/?comic=latest')
-            .then(res => res.json())
-            .then(data => {
-                this.setState({
-                    num: data.num,
-                    imageURL: data.img,
-                    alt: data.alt,
-                    title: data.title
-                });
-            })
-    }
-
-    componentDidMount() {
-        this.getLatestImage();
-    }
-
     render() {
         return (
             <div>
