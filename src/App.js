@@ -1,26 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import './App.css';
+import Home from './components/Home';
+import Search from './components/Search'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      imageURL: '',
+    }
+  }
+
+  getLatestImage() {
+    fetch('https://xkcd.now.sh/?comic=latest')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          num: data.num,
+          imageURL: data.img,
+          alt: data.alt,
+          title: data.title
+        });
+      })
+  }
+
+  componentDidMount() {
+    this.getLatestImage();
+  }
+
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route path="/search">
+              <Home></Home>
+              <Search></Search>
+            </Route>
+            <Route path="/">
+              <Home></Home>
+              <img src={this.state.imageURL} className="latestImage" title={this.state.alt} alt={this.state.title}></img>
+            </Route>
+          </Switch>
+        </div>
+      </Router >
+    );
+  }
 }
 
-export default App;
+// function Search() {
+//   let match = useRouteMatch();
+//   return (
+
+//   )
+// }
+
