@@ -10,9 +10,9 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                <Link to='/'><button className="latest">Latest</button></Link>
+                <Link to='/'><button className="latest btn btn-outline-secondary btn-sm">Latest</button></Link>
                 &nbsp;
-                <Link to='/search'><button className="search">Search</button></Link>
+                <Link to='/search'><button className="search btn btn-outline-secondary btn-sm">Search</button></Link>
                 <br />
             </div>
         )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import Home from './components/Home';
 import Search from './components/Search'
@@ -20,7 +21,10 @@ export default class App extends Component {
           num: data.num,
           imageURL: data.img,
           alt: data.alt,
-          title: data.title
+          title: data.title,
+          year: data.year,
+          day: data.day,
+          month: data.month,
         });
       })
       .catch((error) => {
@@ -35,7 +39,7 @@ export default class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
+        <div className="App mt-5">
           <Switch>
             <Route path="/search">
               <Home></Home>

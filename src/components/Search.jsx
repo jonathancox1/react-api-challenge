@@ -14,9 +14,13 @@ export default class Search extends Component {
             .then(res => res.json())
             .then(data => {
                 this.setState({
+                    num: data.num,
                     imageURL: data.img,
                     alt: data.alt,
-                    title: data.title
+                    title: data.title,
+                    year: data.year,
+                    day: data.day,
+                    month: data.month,
                 })
             })
             .catch((error) => {
@@ -24,9 +28,21 @@ export default class Search extends Component {
             })
     }
 
+    // componentDidMount() {
+    //     this.searchImage();
+    //     this.copyright();
+    // }
+
+    copyright = () => {
+        return `
+        Copyright : <small>${this.state.day},${this.state.month} ${this.state.year}</small>
+        `
+    }
+
     onSubmit = (e) => {
         e.preventDefault();
         this.searchImage();
+        this.copyright();
     }
 
     onChange = (e) => {
@@ -40,9 +56,13 @@ export default class Search extends Component {
             <div>
                 <form onSubmit={this.onSubmit}>
                     <input className="searchInput" type="text" onChange={this.onChange}></input>
-                    <button className="searchSubmit" type="submit">Submit</button>
+                    <button className="searchSubmit btn btn-outline-secondary btn-sm" type="submit">Submit</button>
                 </form>
                 <img src={this.state.imageURL} className="latestImage" title={this.state.alt} alt={this.state.title}></img>
+                <br />
+                <div>
+                    <b>{this.state.year}</b>
+                </div>
             </div>
         )
     }
